@@ -1,6 +1,6 @@
 # emoji_picker
 
-**Emoji picker WeeChat plugin
+Emoji picker WeeChat plugin
 
 ## Requirements
 
