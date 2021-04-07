@@ -1610,8 +1610,9 @@ def emoji_picker(data, buffer, args)
   em = with_filter('fzf-tmux -d25% --tiebreak=index') do
     puts EMOJIS
   end.first&.split&.first || ""
+  em = em.force_encoding("utf-8")
   pos = Weechat.buffer_get_integer(Weechat.current_buffer, 'input_pos')
-  current_input = Weechat.buffer_get_string(Weechat.current_buffer, 'input')
+  current_input = Weechat.buffer_get_string(Weechat.current_buffer, 'input').force_encoding("utf-8")
   Weechat.buffer_set(Weechat.current_buffer, 'input',  current_input.insert(pos.to_i, em))
   Weechat.buffer_set(Weechat.current_buffer, 'input_pos', (pos + 1).to_s)
 
