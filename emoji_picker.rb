@@ -1603,7 +1603,9 @@ def with_filter(command)
     $stdout = stdout
   end
   io.close_write
-  io.readlines.map(&:chomp)
+  lines = io.readlines.map(&:chomp)
+  Process.detach(io.pid)
+  lines
 end
 
 def emoji_picker(data, buffer, args)
