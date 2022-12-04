@@ -1588,7 +1588,7 @@ EMOJIS = <<~EMOJIS
 EMOJIS
 
 def weechat_init
-  Weechat.register('emoji_picker', 'Christian Lønaas <christian.lonaas@ugle-z.no>', '0.1', 'MIT', 'Emoji picker', '', '')
+  Weechat.register('emoji_picker', 'Christian Lønaas <christian.lonaas@ugle-z.no>', '0.3', 'MIT', 'Emoji picker', '', '')
   Weechat.hook_command('emoji', 'Emojipicker', '', '', '', 'emoji_picker', '')
 
   Weechat::WEECHAT_RC_OK
