@@ -1612,12 +1612,28 @@ def emoji_picker(data, buffer, args)
   em = with_filter('fzf-tmux -d25% --tiebreak=index') do
     puts EMOJIS
   end.first&.split&.first || ""
-  pos = Weechat.buffer_get_integer(Weechat.current_buffer, 'input_pos')
-  current_input = Weechat.buffer_get_string(Weechat.current_buffer, 'input')
 
-  Weechat.buffer_set(Weechat.current_buffer, 'input',  "#{current_input}#{em}")
+  if em.empty?
+    return Weechat::WEECHAT_RC_OK
+  end
+
+  # Retrieve the current input and position in the input buffer
+  current_input = Weechat.buffer_get_string(Weechat.current_buffer, 'input')
+  pos = Weechat.buffer_get_integer(Weechat.current_buffer, 'input_pos')
+
+  # Split the input string at the cursor position
+  before = current_input[0...pos]
+  after = current_input[pos..-1]
+
+  # Insert the selected emoji in the middle of the input string
+  # and update the position in the input buffer
+  Weechat.buffer_set(Weechat.current_buffer, 'input',  "#{before}#{em}#{after}")
   Weechat.buffer_set(Weechat.current_buffer, 'input_pos', (pos + 1).to_s)
 
   Weechat::WEECHAT_RC_OK
 end
+
+
+
+
 
