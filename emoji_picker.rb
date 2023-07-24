@@ -1585,6 +1585,7 @@ EMOJIS = <<~EMOJIS
 🟩 :green_square: green square
 🟦 :blue_square: blue square
 ▪ :black_small_square: black small square
+🪚 :saw: saw
 EMOJIS
 
 def weechat_init
@@ -1632,8 +1633,3 @@ def emoji_picker(data, buffer, args)
 
   Weechat::WEECHAT_RC_OK
 end
-
-
-
-
-
